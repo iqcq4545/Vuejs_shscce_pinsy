@@ -1,0 +1,149 @@
+.page {
+  background: #f6f4f1;
+}
+
+.publish {
+  width: 7.50rem;
+  padding-bottom: 1.00rem;
+}
+
+.publish .wrap {
+  width: 6.80rem;
+  padding: .15rem .35rem;
+  background: #fff;
+  margin-bottom: .125rem;
+}
+
+.radio .item {
+  background: #f0efed;
+  width: 1.10rem;
+  height: .60rem;
+  line-height: .60rem;
+  text-align: center;
+  margin-right: .10rem;
+}
+
+.radio .item.on {
+  background: #fcf3e6;
+  color: #d7a666;
+}
+
+.label {
+  width: 2.00rem;
+  line-height: .60rem;
+  font-size: .26rem;
+}
+
+.req {
+  color: #f06256;
+  line-height: .60rem;
+  width: .16rem;
+  height: .60rem;
+}
+
+.previewImage {
+  width: 7.06rem;
+  position: relative;
+}
+
+.wrapImage {
+  width: 1.50rem;
+  height: 1.50rem;
+  background: #f0efed;
+  color: #888;
+  margin: .13rem .26rem .13rem 0;
+  position: relative;
+}
+
+.wrapImage .inputImg{
+  width: 1.50rem;
+  height: 1.50rem;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.wrapImage .image {
+  width: 1.50rem;
+  height: 1.50rem;
+}
+
+.wrapImage .rmImage {
+  padding: .05rem;
+  width: .20rem;
+  height: .20rem;
+  position: absolute;
+  top: .10rem;
+  right: .10rem;
+  z-index: 2;
+  background: #363431;
+  opacity: 0.5;
+  border-radius: .02rem;
+}
+
+.plus {
+  padding: .20rem 0 0 0;
+  width: 100%;
+  line-height: .80rem;
+  font-size: .80rem;
+  text-align: center;
+  font-weight: 100;
+}
+
+.desc {
+  width: 100%;
+  text-align: center;
+}
+
+.wline {
+  margin: .15rem -.35rem;
+  width: 7.50rem;
+  border-top: 1px solid #f6f4f1;
+}
+
+input {
+  height: .60rem;
+  line-height: .60rem;
+  width: 4.80rem;
+}
+
+textarea {
+  height: 1.20rem;
+  line-height: .30rem;
+  width: 4.80rem;
+  padding: .17rem 0;
+}
+
+input.date {
+  width: 2.30rem;
+}
+
+.placeholder {
+  color: #c4c4c4;
+}
+
+.tip {
+  position: absolute;
+  line-height: .60rem;
+}
+
+.submit {
+  width: 100%;
+  height: 1.06rem;
+  background: #d7a666;
+  line-height: 1.06rem;
+  font-size: .28rem;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-radius: 0;
+  z-index: 99;
+  text-align: center
+}
+
+.submit::after {
+  display: none;
+}

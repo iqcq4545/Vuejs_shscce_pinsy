@@ -1,0 +1,125 @@
+.page{
+  background: #fff;
+}
+.seachWrap .seachInput {
+  width: 100% !important;
+}
+
+.list {
+  margin-top: .925rem;
+}
+
+.tabType {
+  background: #fff;
+  width: 100%;
+  height: .70rem;
+  position: fixed;
+  z-index: 11;
+  left: 0;
+  box-shadow: .001rem 0 .20rem .0025rem #f2f3f5;
+  text-align: center;
+}
+
+.tabType .type {
+  font-size: .32rem;
+  line-height: .64rem;
+  border-bottom: .06rem solid #fff;
+  width: .75rem;
+  margin: 0 1.50rem;
+  text-align: center;
+}
+
+.tabType .type.on {
+  color: #dfa760;
+  border-color: #dfa760;
+}
+
+.list.buy .rankItem {
+  margin-top: 1.60rem;
+}
+
+.list.sale .rankItem {
+  margin-top: 2.20rem;
+}
+
+.rank {
+  width: 6.80rem;
+  float: left;
+  position: relative;
+}
+
+.rank .rankTab {
+  padding: 0 .20rem;
+  width: 6.40rem;
+  height: .60rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rank .tab {
+  color: #888;
+  font-size: .26rem;
+  line-height: .26rem;
+  padding: .15rem 0;
+}
+
+.rank .tab.on {
+  color: #333230;
+  background: linear-gradient(to bottom, #fff 0%, #fff 50%, #fdd6a3 65%, #e9be85 80%, #fff 81%, #fff 100%);
+}
+
+.rank .rankBtn {
+  margin-top: .10rem;
+  text-align: center;
+  width: 6.80rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rank .rankBtn .btn {
+  height: .58rem;
+  line-height: .58rem;
+  font-size: .24rem;
+  border-radius: .30rem;
+  background: #f2f0ed;
+  color: #333;
+  border: 1px solid #f2f0ed;
+}
+
+.rank .rankBtn .btn.on {
+  background: #fcf3e6;
+  color: #da9a46;
+  border-color: #da9a46;
+}
+
+.tabBuy, .tabSale {
+  width: 6.80rem;
+  background: #fff;
+  z-index: 10;
+  position: fixed;
+  padding: .10rem .35rem;
+  left: 0;
+  margin-top: .68rem;
+  border: 1px solid #f2f0ed;
+}
+
+.rank .tabBuy .btn {
+  width: 1.50rem;
+}
+
+.rank .tabSale .btn {
+  width: 1.50rem;
+}
+
+.rank .rankItem {
+  width: 6.80rem;
+  margin-top: 1.10rem;
+}
+
+.rank .rankImg {
+  width: 1.90rem;
+  height: 1.90rem;
+  background: #101710;
+  position: relative;
+}
+@import "../index/list.wxss";

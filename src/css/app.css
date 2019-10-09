@@ -1,0 +1,260 @@
+html{min-width:320px; min-height:100%;font-size: 50px;  background: #f9f9f9;}
+
+
+body{margin:0 auto ;position:relative;padding:0;width:7.50rem; max-width: 100%; min-width: 320px;float: left; word-break:break-all;font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;-webkit-tatext-highlight-color: transparent}
+b,dd,div,dl,dt,form,li,p,em,span,ul,img, label, input, textarea, button {margin:0;padding:0;border:0;list-style:none; font-style: normal; float: left;
+}
+h1,h2,h3,h4,h5,h6{margin:0;padding:0;border:0;font-weight:400}
+
+div, p, button {
+  font-size: .24rem;
+  line-height: .24rem;
+}
+
+a{-webkit-tap-highlight-color: transparent; outline: none;color: #333230;  text-decoration: none;}
+
+.page,#app{width: 7.50rem;position: relative;float: left; }
+
+.container {
+  width: 6.80rem;
+  margin: 0 .35rem;
+  float: left;
+  position: relative;
+}
+
+.fl {
+  float: left !important;
+}
+
+.fr {
+  float: right !important;
+}
+
+.fn {
+  float: none !important;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.tac {
+  text-align: center;
+}
+
+.fwb {
+  font-weight: bold;
+}
+
+.fs20 {
+  font-size: .2rem;
+  line-height: .2rem;
+}
+
+.fs22 {
+  font-size:.22rem;
+  line-height: .22rem;
+}
+
+.fs26 {
+  font-size: .26rem;
+  line-height: .26rem;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.red {
+  color: #ff7858!important;
+}
+
+.row {
+  width: 6.80rem;
+  position: relative;
+}
+
+.tabbar{
+  border-top:1px #e8e6e3 solid;
+  bottom: 0;
+  left: 0;
+  width: 7.50rem;
+ text-align: center;
+ background: #fff;
+
+ position: fixed;
+
+ z-index: 99;
+
+}
+.tabbar ul{
+  padding: .10rem 0;
+  width: 100%;
+  position: relative;
+
+}
+.tabbar ul li{
+  position: relative;
+}
+
+.tabbar ul li img{
+   float: none;
+   width : .5rem ;
+}
+
+.tabbar ul li p{
+  width:100%}
+
+
+.seachWrap {
+  top: 0;
+  left: 0;
+  width: 6.80rem;
+  padding: .25rem .35rem .10rem .35rem;
+  position: fixed;
+  background: #fff;
+  z-index: 99;
+}
+
+.seachWrap .searchLeft, .seachWrap .searchRight {
+  width: .75rem;
+  height: .60rem;
+  font-size: .18rem;
+  color: #888;
+}
+
+.seachWrap .searchRight {
+}
+
+.seachWrap img {
+  width: .35rem;
+  height: .3rem;
+  margin: .04rem .1rem .04rem .1rem;
+}
+
+.seachWrap .seachInput {
+  width: 5.3rem;
+  background: #f2f0ed;
+  height: .60rem;
+  border-radius: .3rem;
+  position: relative;
+}
+
+.seachWrap .p {
+  width: 5.20rem;
+  font-size: .26rem;
+  line-height: .60rem;
+  height: .60rem;
+  margin: 0 0 0 .20rem;
+  color: #999590;
+  background: transparent
+}
+
+.seachWrap .placeholder {
+}
+
+.seachWrap .searchIco {
+  width: .32rem;
+  height: .32rem;
+  margin: .16rem 0 0 .20rem;
+}
+
+.seachWrap .speechIco {
+  top: .10rem;
+  right: .30rem;
+  width: .26rem;
+  height: .40rem;
+  position: absolute;
+  margin: 0;
+}
+
+
+.swiper-container{  width: 6.80rem;
+  height: 1.90rem;}
+
+.fixed {
+  position: fixed;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.4);
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+.getPhoneModal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  overflow: hidden;
+  margin: auto;
+  width: 5.00rem;
+  height: 2.90rem;
+  border-radius: .06rem;
+  background: #fff;
+}
+
+.getPhoneModal .p {
+  padding: .50rem .75rem .50rem .75rem;
+  width: 3.50rem;
+  height: .90rem;
+  color: #333230;
+  font-size: .30rem;
+  line-height: .45rem;
+}
+
+.getPhoneModal .btns {
+  width: 5.00rem;
+  border-top: 1rem solid #f0efed;
+}
+
+.getPhoneModal .close {
+  width: 2.50rem;
+  height: 1.00rem;
+  border-right: .01rem solid #f0efed;
+  background: #fff;
+  color: #333230;
+  text-align: center;
+  font-size: .30rem;
+  line-height: 1.00rem;
+}
+
+.getPhoneModal .getPhone {
+  margin: 0;
+  padding: 0;
+  width: 2.50rem;
+  height: 1.00rem;
+  background: #fff;
+  color: #d1a265;
+  text-align: center;
+  font-size: .30rem;
+  line-height: 1.00rem;
+}
+
+.getPhoneModal .close::after, .getPhoneModal .getPhone::after {
+  display: none;
+}
+
+/*item*/

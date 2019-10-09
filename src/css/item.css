@@ -1,0 +1,293 @@
+.banner {
+  position: relative;
+  float: left;
+  width: 7.50rem;
+  height: 4.65rem;
+}
+
+.banner .swiper {
+  width: 7.50rem;
+  height: 4.65rem;
+}
+
+.banner .swiper .swiper-slide {
+  background-color: #101710;
+}
+
+.banner .swiper .swiper-slide .slide-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: 7.5rem;
+  max-height: 4.65rem;
+}
+
+.noImage {
+  width: 7.50rem;
+  height: 4.65rem;
+  position: absolute;
+}
+
+.item {
+  width: 7.50rem;
+  position: relative;
+  padding-bottom: 1.00rem;
+}
+
+.item .wrap {
+  width: 6.80rem;
+  padding: .30rem .35rem;
+  background: #fff;
+  margin-bottom: .125rem;
+}
+
+.bid {
+  color: #333230;
+  margin: .09rem .10rem 0 0;
+  background: linear-gradient(to bottom, #fff 0%, #fff 50%, #fdd6a3 75%, #e9be85 100%);
+}
+
+.item .price {
+  color: #ff7858;
+  font-size: .30rem;
+  line-height: .40rem;
+}
+
+.item .price .cny {
+  padding: .04rem .04rem 0 0;
+  font-size: .24rem;
+
+}
+
+.item .price .int {
+  font-size: .40rem;
+  padding: .08rem 0 0 0;
+}
+
+.item .price .float {
+  padding: .10rem .04rem 0 0;
+  font-size: .28rem;
+}
+
+.item .price .unit {
+  padding: .10rem 0 0 0;
+  font-weight: normal;
+}
+
+.item .subt {
+  color: #999590;
+  margin: .06rem 0 0 .25rem;
+  line-height: .40rem;
+}
+
+.item .titLe {
+  width: 6.00rem;
+  font-size: .32rem;
+  line-height: .48rem;
+  max-height: .96rem;
+  overflow: hidden;
+}
+
+.item img.type.buy {
+  width: 1.05rem;
+}
+
+.item img.type {
+  width: .63rem;
+  height: .34rem;
+  margin: .07rem .18rem 0 0;
+}
+
+.item .share {
+  position: absolute;
+  color: #999590;
+  width: .50rem;
+  text-align: center;
+  right: 0;
+  padding: 0;
+  background: none;
+  z-index: 9;
+  overflow: visible;
+}
+
+.item .share .hline {
+  position: absolute;
+  background: #eee;
+  height: .30rem;
+  top: .22rem;
+  left: -.18rem;
+  width: .01rem;
+}
+
+.item.sale .share {
+  top: -.30rem;
+}
+
+.item .share::after {
+  display: none;
+}
+
+.item .share .ico {
+  width: .32rem;
+  height: .32rem;
+  padding: .09rem;
+}
+
+.item .desc {
+  width: 6.80rem;
+  min-height: .44rem;
+  max-height: .88rem;
+  line-height: .44rem;
+  overflow: hidden;
+}
+
+.item .desc.on {
+  max-height: none;
+  overflow: visible;
+}
+
+.item .wline {
+  margin: .30rem -.35rem;
+  width: 7.50rem;
+  border-top: 1px solid #f6f4f1;
+}
+
+.item .tit, .txt {
+  font-size: .26rem;
+  line-height: .40rem;
+}
+
+.item .tit {
+  width: 1.40rem;
+  color: #999590;
+  height: .40rem;
+}
+
+.item .txt {
+  color: #333230;
+}
+
+.item img.avatar {
+  width: .68rem;
+  height: .68rem;
+  border-radius: .34rem;
+}
+
+.item .usrInfo {
+  width: 5.90rem;
+}
+
+.item .usrInfo .name {
+  line-height: .30rem;
+}
+
+.item .date {
+  width: 5.90rem;
+  margin-top: .125rem;
+  color: #999590;
+}
+
+.item .wrap .title {
+  border-bottom: .01rem solid #f6f4f1;
+  width: 6.80rem;
+  padding-bottom: .30rem;
+}
+
+.item .wrap .comment {
+  width: 6.80rem;
+  margin-top: .20rem;
+}
+
+.item .wrap .comment .avatar {
+  margin: .10rem 0;
+  width: .44rem;
+  height: .44rem;
+}
+
+.item .wrap .comment .text {
+  width: 6.20rem;
+  color: #333230;
+}
+
+.item .wrap .comment .name, .wrap .comment .date, .wrap .comment .body {
+  width: 6.20rem;
+}
+
+.item .wrap .comment .name {
+  margin-top: .075rem;
+}
+
+.item .wrap .comment .date {
+  margin-top: .10rem;
+}
+
+.item .wrap .comment .body {
+  margin-top: .15rem;
+  line-height: .26rem;
+}
+
+.item .wrap .comment .reply {
+  background: #f6f4f1;
+  width: 5.80rem;
+  padding: .20rem;
+  margin-top: .25rem;
+}
+
+.item .wrap .comment .reply .name {
+  color: #d1984e;
+  width: 5.80rem;
+  margin: 0;
+}
+
+.item .wrap .comment .reply .body {
+  color: #999590;
+  width: 5.80rem;
+}
+
+.botBtns {
+  width: 100%;
+  height: 1.00rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  z-index: 99;
+}
+
+.botBtns .btn {
+  line-height: .99rem;
+  font-size: .30rem;
+  border-radius: 0;
+  background: #d7a666;
+  color: #fff;
+  border-top: .01rem solid #d7a666;
+}
+
+.botBtns .btn.disabled {
+  background: #e6e4e1 !important;
+  color: #999590 !important;
+  border-color: #e6e4e1 !important;
+}
+
+.botBtns .submit {
+  width: 100%;
+}
+
+.botBtns .shelf, .botBtns .edit {
+  width: 50%;
+}
+
+.botBtns .shelf {
+  background: #fff;
+  border-color: #e6e4e1;
+  color: #999590;
+}
+
+button::after {
+  display: none;
+}
