@@ -24,12 +24,12 @@
             <p class="tit fwb">出售</p>
             <p class="txt">查看出售商品</p>
           </div>
-          <img class='btnIco fr' src='../images/icon_index_sale.png'></img>
+          <img class="btnIco fr" src="../images/icon_index_sale.png"></img>
         </div>
         <div class='btnBox fr'>
-          <div class='txtBox'>
-            <p class='tit fwb'>求购</p>
-            <p class='txt'>查看求购商品</p>
+          <div class="txtBox">
+            <p class="tit fwb">求购</p>
+            <p class="txt">查看求购商品</p>
           </div>
           <img class='btnIco fr' src='../images/icon_index_buy.png'></img>
         </div>
@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      <div class='rank'>
+      <div class='rank' onscroll="scroll">
         <div class='rankTab'>
           <p class='tab' :class="rankType=='sale' && 'on'" v-on:click="changeRank('sale')">出售</p>
           <p class='tab' :class="rankType=='buy' && 'on'" v-on:click="changeRank('buy')">求购</p>
@@ -124,7 +124,6 @@
   import 'swiper/dist/css/swiper.min.css';
 
   import {
-    toast,
     recursionData,
     fmtPrice,
     analyTrend,
@@ -136,10 +135,11 @@
 
   export default {
     name: 'Index',
+    inject: ["toast"],
     data() {
       return {
         hotKeyword: "猴年邮票",
-        searchKeyword: "",
+        searchKeyword: undefined,
         banner: [],
         goodsIndex: {},
         rankType: "sale",
@@ -151,7 +151,7 @@
           "3": "bill"
         },
         swiperOption: {
-          pagination: '.swiper-pagination',
+          pagination: ".swiper-pagination",
           paginationClickable: true,
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
@@ -164,17 +164,31 @@
             slideShadows: true
           }
         },
+        pageNumber: {
+          "sale": 1,
+          "buy": 1,
+
+        },
+        maximum: {
+          "sale": undefined,
+          "buy": undefined,
+        }
       }
     },
     created() {
-
+      var that = this;
+      window.addEventListener("scroll", function (e) {
+        if ((document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight > (document.body.clientHeight - 1)) {
+          that.loadNextPage();
+        }
+      });
     },
     mounted() {
       this.$ReqIndex.getGoodsindex().then((res) => {
-        var data = recursionData(res.data.data, ['billIndex', 'coinIndex', 'stampIndex', 'billChange', 'coinChange', 'stampChange'], {
+        var data = recursionData(res.data.data, ["billIndex", "coinIndex", "stampIndex", "billChange", "coinChange", "stampChange"], {
           a: fmtPrice,
         }, {
-            a: 'View',
+            a: "View",
           });
         for (var i in data) {
           if (i === "billChange" || i === "coinChange" || i === "stampChange") {
@@ -207,32 +221,57 @@
       },
       searchEnter(e) {
         this.$AppData.global({ searchKeyword: e.target.value });
-        this.$router.push({ path: '/list', query: { type: this.rankType, search: e.target.value } })
+        this.$router.push({ path: "/list", query: { type: this.rankType, search: e.target.value } })
       },
       loadProductListAll() {
-        this.$ReqIndex.getProductListAll().then((res) => {
-          var list = recursionData(res.data, ['price'], {
-            a: fmtPrice,
-          }, {
-              a: 'View',
-            });
-          Array.prototype.push.apply(this.saleList, list);
-          this.$set(this.saleList);
+        this.$ReqIndex.getProductListAll({
+          pageNumber: this.pageNumber.sale,
+          pageSize: 10
+        }).then((res) => {
+          if (res.data.length) {
+            var list = recursionData(res.data, ["price"], {
+              a: fmtPrice,
+            }, {
+                a: "View",
+              });
+            Array.prototype.push.apply(this.saleList, list);
+            this.$set(this.saleList, this.pageNumber.sale * 10 - 10, list[0]);
+          } else {
+            this.maximum.sale = this.pageNumber.sale;
+          }
         });
       },
-
-     
       loadBuyListAll() {
-        this.$ReqIndex.getBuyListAll().then((res) => {
-          var list = recursionData(res.data.rows, ['intentionalPrice'], {
-            a: fmtPrice,
-          }, {
-              a: 'View',
-            });
-          Array.prototype.push.apply(this.buyList, list);
-          this.$set(this.buyList);
+        this.$ReqIndex.getBuyListAll({
+          pageNumber: this.pageNumber.buy,
+          pageSize: 10
+        }).then((res) => {
+          if (res.data.rows.length) {
+            var list = recursionData(res.data.rows, ["intentionalPrice"], {
+              a: fmtPrice,
+            }, {
+                a: "View",
+              });
+            Array.prototype.push.apply(this.buyList, list);
+            this.$set(this.buyList, (this.pageNumber.buy - 1) * 10, list[0]);
+          } else {
+            this.maximum.buy = this.pageNumber.buy;
+          }
         });
       },
+      loadNextPage() {
+        console.log(this.rankType, this.pageNumber[this.rankType], this.maximum[this.rankType])
+        if (this.pageNumber[this.rankType] === this.maximum[this.rankType]) {
+          return false;
+        }
+        this.pageNumber[this.rankType] += 1;
+        if (this.rankType === "sale") {
+          this.loadProductListAll();
+        }
+        else {
+          this.loadBuyListAll();
+        }
+      }
     },
   }
 </script>

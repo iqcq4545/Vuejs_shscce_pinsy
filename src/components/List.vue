@@ -1,32 +1,32 @@
 <template>
   <div class="page">
-    <div class='seachWrap'>
+    <div class="seachWrap">
       <div class="seachInput">
-        <img class='searchIco' src="../images/search.png" />
+        <img class="searchIco" src="../images/search.png" />
         <input class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
-        <img class='speechIco' src='../images/btn_yysr.png'></img>
+        <img class="speechIco" src="../images/btn_yysr.png"></img>
       </div>
     </div>
 
     <div class="container list" :class="listType">
 
-      <div class='rank'>
+      <div class="rank">
 
         <div class="tabType">
           <p class="type" :class="listType=='sale' && 'on'" v-on:click="changeList('sale')">出售</p>
           <p class="type" :class="listType=='buy' && 'on'" v-on:click="changeList('buy')">求购</p>
         </div>
 
-        <div class='tabSale' v-show="listType==='sale'">
+        <div class="tabSale" v-show="listType==='sale'">
 
-          <div class='rankTab fl'>
+          <div class="rankTab fl">
             <p class="tab" :class="order=='DATE_DESC' && 'on'" v-on:click="changeOrder('DATE_DESC')">最新发布</p>
             <p class="tab" :class="order=='HITS_DESC' && 'on'" v-on:click="changeOrder('HITS_DESC')">最多浏览</p>
             <p class="tab" :class="order=='SALES_DESC' && 'on'" v-on:click="changeOrder('SALES_DESC')">最热成交</p>
             <!-- <p class="tab" :class="order=='SCORE_DESC' && 'on'" v-on:click="changeOrder('SCORE_DESC')">信用最高</p> -->
           </div>
 
-          <div class='rankBtn fl'>
+          <div class="rankBtn fl">
             <p class="btn" :class="category[listType]=='' && 'on'" v-on:click="changeCategory('')">全部</p>
             <p class="btn" :class="category[listType]=='1' && 'on'" v-on:click="changeCategory('1')">邮票</p>
             <p class="btn" :class="category[listType]=='2' && 'on'" v-on:click="changeCategory('2')">硬币</p>
@@ -35,9 +35,9 @@
 
         </div>
 
-        <div class='tabBuy' v-show="listType==='buy'">
+        <div class="tabBuy" v-show="listType==='buy'">
 
-          <div class='rankBtn fl'>
+          <div class="rankBtn fl">
             <p class="btn" :class="category[listType]=='' && 'on'" v-on:click="changeCategory('')">全部</p>
             <p class="btn" :class="category[listType]=='stamp' && 'on'" v-on:click="changeCategory('stamp')">邮票</p>
             <p class="btn" :class="category[listType]=='coin' && 'on'" v-on:click="changeCategory('coin')">硬币</p>
@@ -46,25 +46,25 @@
 
         </div>
 
-        <div class='rankItem sale' v-show="listType==='sale'">
+        <div class="rankItem sale" v-show="listType==='sale'">
 
           <div v-for="(item,i) in saleList" :key="i" class="row">
             ​<router-link :to="'/item?id='+item.id+'&type=sale'">
-              <div class='rankImg'>
-                <img class='image' :src="item.thumbnail"></img>
+              <div class="rankImg">
+                <img class="image" :src="item.thumbnail"></img>
               </div>
-              <div class='rankTxt fr'>
-                <div class='tit fwb'>{{item.name}}</div>
+              <div class="rankTxt fr">
+                <div class="tit fwb">{{item.name}}</div>
                 <img class="type"
                   :src="require('../images/ico_sale_'+saleCategory[item.productCategory.id]+'.png')"></img>
-                <div class='amount'>
-                  <div class='price fwb'>
+                <div class="amount">
+                  <div class="price fwb">
                     <em class="cny">¥</em>
-                    <p class='int'>{{item.priceView.split[0]}}</p>
+                    <p class="int">{{item.priceView.split[0]}}</p>
                     <p class="float">.{{item.priceView.split[1]}}</p>
-                    <p class='unit'>/{{item.unit?item.unit:''}}</p>
+                    <p class="unit">/{{item.unit?item.unit:''}}</p>
                   </div>
-                  <p class='sales'>售出{{item.sales+item.defaultSku.allocatedStock}}件</p>
+                  <p class="sales">售出{{item.sales+item.defaultSku.allocatedStock}}件</p>
                 </div>
               </div>
             </router-link>
@@ -72,22 +72,22 @@
 
         </div>
 
-        <div class='rankItem buy' v-show="listType==='buy'">
+        <div class="rankItem buy" v-show="listType==='buy'">
 
           <div v-for="(item,i) in buyList" :key="i" class="row">
             ​<router-link :to="'/item?id='+item.id+'&type=buy'">
 
-              <div class='tit fwb'>{{item.wantBuyInfo}}</div>
+              <div class="tit fwb">{{item.wantBuyInfo}}</div>
               <img class="type" :src="require('../images/ico_buy_'+item.wantBuyType+'.png')"></img>
-              <div class='amount'>
-                <p class='bid fs20'>意向价格</p>
-                <div class='price fwb'>
+              <div class="amount">
+                <p class="bid fs20">意向价格</p>
+                <div class="price fwb">
                   <em class="cny">¥</em>
-                  <p class='int'>{{item.intentionalPriceView.split[0]}}</p>
+                  <p class="int">{{item.intentionalPriceView.split[0]}}</p>
                   <p class="float">.{{item.intentionalPriceView.split[1]}}</p>
-                  <p class='unit'>/{{item.unit?item.unit:''}}</p>
+                  <p class="unit">/{{item.unit?item.unit:''}}</p>
                 </div>
-                <p class='sales'>购得0件</p>
+                <p class="sales">购得0件</p>
               </div>
             </router-link>
           </div>
@@ -104,7 +104,6 @@
 <script>
 
   import {
-    toast,
     recursionData,
     fmtPrice,
     analyTrend,
@@ -115,18 +114,18 @@
 
   export default {
     name: 'List',
-    inject: ['reload'],
+    inject: ["reload"],
     data() {
       return {
         hotKeyword: "猴年邮票",
-        searchKeyword: "",
+        searchKeyword: undefined,
         listType: "sale",
         order: "DATE_DESC",
         saleList: [],
         buyList: [],
         category: {
-          "sale": "",
-          "buy": ""
+          "sale": undefined,
+          "buy": undefined
         },
         saleCategory: {
           "1": "stamp",
@@ -135,15 +134,25 @@
         },
         pageNumber: {
           "sale": 1,
-          "buy": 1
+          "buy": 1,
+
+        },
+        maximum: {
+          "sale": undefined,
+          "buy": undefined,
         }
       }
     },
 
     created() {
-      this.listType = this.$route.query.type || 'sale';
-      this.searchKeyword = this.$route.query.search || '';
-      console.log(this.searchKeyword)
+      var that = this;
+      that.listType = that.$route.query.type || "sale";
+      that.searchKeyword = that.$route.query.search || "";
+      window.addEventListener("scroll", function (e) {
+        if ((document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight > document.body.clientHeight - 25) {
+          that.loadNextPage();
+        }
+      });
     },
 
     mounted() {
@@ -151,7 +160,7 @@
       this.loadBuyListAll();
       console.log(this.$AppData.global());
     },
-    updated(){
+    updated() {
       console.log("updated");
     },
     methods: {
@@ -165,14 +174,26 @@
         }
         if (this.searchKeyword) {
           this.$ReqList.getProductSearch(reqData).then((res) => {
-            Array.prototype.push.apply(this.saleList, res.data);
-            this.parseData(this.saleList, ["price"], "View", "saleList");
+            if (res.data.length) {
+              Array.prototype.push.apply(this.saleList, res.data);
+              this.parseData(this.saleList, ["price"], "View", "saleList");
+            }
+            else {
+              this.maximum.sale = this.pageNumber.sale;
+            }
           });
         } else {
-        this.$ReqList.getProductListAll(reqData).then((res) => {
-          Array.prototype.push.apply(this.saleList, res.data);
-          this.parseData(this.saleList, ["price"], "View", "saleList");
-        });
+
+          this.$ReqList.getProductListAll(reqData).then((res) => {
+            if (res.data.length) {
+              Array.prototype.push.apply(this.saleList, res.data);
+              this.parseData(this.saleList, ["price"], "View", "saleList");
+            }
+            else {
+              this.maximum.sale = this.pageNumber.sale;
+            }
+          });
+
         }
       },
 
@@ -184,8 +205,13 @@
           pageSize: 10
         }
         this.$ReqList.getBuyListAll(reqData).then((res) => {
-          Array.prototype.push.apply(this.buyList, res.data.rows);
-          this.parseData(this.buyList, ["intentionalPrice"], "View", "buyList");
+          if (res.data.rows.length) {
+            Array.prototype.push.apply(this.buyList, res.data.rows);
+            this.parseData(this.buyList, ["intentionalPrice"], "View", "buyList");
+          }
+          else {
+            this.maximum.buy = this.pageNumber.buy;
+          }
         });
       },
 
@@ -196,8 +222,8 @@
             a: field,
           });
         data = list;
-        this.$set(data);
-        console.log(this[dataKey])
+        console.log()
+        this.$set(data, 0, list[0]);
       },
 
       changeList(type) {
@@ -225,10 +251,24 @@
       },
 
       searchEnter(e) {
-        this.$router.push({ path: '/list', query: { type: this.listType, search: e.target.value } });
-        this.searchKeyword =  e.target.value;
+        this.$router.push({ path: "/list", query: { type: this.listType, search: e.target.value } });
+        this.searchKeyword = e.target.value;
         this.reload();
       },
+
+      loadNextPage() {
+        console.log(this.listType, this.pageNumber[this.listType], this.maximum[this.listType])
+        if (this.pageNumber[this.listType] === this.maximum[this.listType]) {
+          return false;
+        }
+        this.pageNumber[this.listType] += 1;
+        if (this.listType === "sale") {
+          this.loadProductListAll();
+        }
+        else {
+          this.loadBuyListAll();
+        }
+      }
     }
   }
 </script>

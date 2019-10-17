@@ -15,36 +15,36 @@
     name: 'tabbar',
     data() {
       return {
-        "selected": undefined,
-        "tabbar": {
-          "color": "#999590",
-          "selectedColor": "#d1a265",
-          "backgroundColor": "#fff",
-          "list": [
+        selected: undefined,
+        tabbar: {
+          color: "#999590",
+          selectedColor: "#d1a265",
+          backgroundColor: "#fff",
+          list: [
             {
-              "text": "首页",
-              "pagePath": "/",
-              "iconPath": "tab_index.png",
-              "selectedIconPath": "tab_index_selected.png",
+              text: "首页",
+              pagePath: "/",
+              iconPath: "tab_index.png",
+              selectedIconPath: "tab_index_selected.png",
             },
             {
-              "text": "商城",
-              "pagePath": "/list",
-              "iconPath": "tab_shop.png",
-              "selectedIconPath": "tab_shop_selected.png",
+              text: "商城",
+              pagePath: "/list",
+              iconPath: "tab_shop.png",
+              selectedIconPath: "tab_shop_selected.png",
             },
             {
-              "text": "我要发布",
-              "pagePath": "/publish",
-              "iconPath": "tab_publish.png",
-              "selectedIconPath": "tab_publish_selected.png",
+              text: "我要发布",
+              pagePath: "/publish",
+              iconPath: "tab_publish.png",
+              selectedIconPath: "tab_publish_selected.png",
 
             },
             {
-              "text": "我的",
-              "pagePath": "/info",
-              "iconPath": "tab_mine.png",
-              "selectedIconPath": "tab_mine_selected.png",
+              text: "我的",
+              pagePath: "/info",
+              iconPath: "tab_mine.png",
+              selectedIconPath: "tab_mine_selected.png",
             }
           ]
         }

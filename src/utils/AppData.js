@@ -6,22 +6,22 @@ class APP_DATA {
     const data = {
       userInfo: undefined,
       logging: false,
-      socialUserId: "",
-      openid: "",
-      session_key: "",
-      Cookie: "",
-      encryptedDataPhone: "",
-      ivData: "",
+      socialUserId: undefined,
+      openid: undefined,
+      session_key: undefined,
+      Cookie: undefined,
+      encryptedDataPhone: undefined,
+      ivData: undefined,
       listType: "sale",
       detail: {},
-      searchKeyword: "",
+      searchKeyword: undefined,
       canTrade: false,
-      addrList: "",
-      orderStatus: '',
-      aftersaleStatus: '',
-      billStatus: '',
-      orderUserRole: '',
-      aftersalesUserRole: ''
+      addrList: undefined,
+      orderStatus: undefined,
+      aftersaleStatus: undefined,
+      billStatus: undefined,
+      orderUserRole: undefined,
+      aftersalesUserRole: undefined
     };
     var storage = JSON.parse(window.localStorage.getItem("AppData") || "{}");
     for (var i in storage) {

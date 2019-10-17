@@ -79,11 +79,15 @@
       </div>
     </div>
 
-    <div class="botBtns">
-      ​<router-link class="btn submit fl" :to="'/orderConfirm?skuId='+id">
+    <div class="botBtns" v-if="act!=='edit'">
+      ​<router-link class="btn submit fl" :to="'/orderConfirm?skuId='+detail.sku.id">
         我要购买</router-link>
     </div>
 
+    <div class="botBtns" v-if="act==='edit'">
+      ​<router-link class="btn submit fl" :to="'/pubitem?type='+type+'&id='+id+'&act=edit'">
+        编辑商品</router-link>
+    </div>
   </div>
 
 </template>
@@ -94,7 +98,6 @@
 
   import {
     formatTime,
-    toast,
     recursionData,
     fmtPrice,
     analyTrend,
@@ -107,39 +110,38 @@
     name: 'Item',
     data() {
       return {
-        type: "",
-        id: "",
-        act: "",
+        type: "sale",
+        id: undefined,
+        act: undefined,
         preImgList: [],
         detail: {
-          productCategory: "",
+          productCategory: undefined,
           productImages: [],
-          title: "",
-          price: 0,
-          views: 0,
-          describe: "",
-          total: 0,
+          title: undefined,
+          price: undefined,
+          views: undefined,
+          describe: undefined,
           sku: {
-            stock: 0,
-            allocatedStock: 0,
-            total: 0,
+            id: undefined,
+            stock: undefined,
+            allocatedStock: undefined,
+            total: undefined,
           },
-          sales: 0,
-          createdDate: 0,
-          category: "",
-          unit: "",
+          sales: undefined,
+          createdDate: undefined,
+          category: "stamp",
+          unit: undefined,
           store: {},
-
         },
         saleCategory: {
           "1": "stamp",
           "2": "coin",
           "3": "bill"
         },
-        submitURL: "",
-        seeMore: "",
+        submitURL: undefined,
+        seeMore: undefined,
         swiperOption: {
-          pagination: '.swiper-pagination',
+          pagination: ".swiper-pagination",
           paginationClickable: true,
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
@@ -157,14 +159,17 @@
 
     created() {
       this.type = this.$route.query.type;
-      this.id = this.$route.query.id
+      this.id = this.$route.query.id;
+      this.act = this.$route.query.act;
     },
 
     mounted() {
       if (this.$route.query.type === "sale") {
+        this.$ReqItem.getHitsSale(this.id);
         this.getDetailSale();
       }
       else {
+        this.$ReqItem.getHitsBuy(this.id);
         this.getDetailBuy();
       }
     },
@@ -185,6 +190,7 @@
               describe: res.data.caption,
               isMarketable: res.data.isMarketable,
               sku: {
+                id: res.data.defaultSku.id,
                 stock: res.data.defaultSku.stock,
                 allocatedStock: res.data.defaultSku.allocatedStock,
                 total: res.data.defaultSku.stock - res.data.defaultSku.allocatedStock,
@@ -202,7 +208,7 @@
             data = recursionData(data, ["price"], {
               a: fmtPrice,
             }, {
-                a: 'View',
+                a: "View",
               });
           this.detail = data;
           this.$AppData.global({ detail: data });
@@ -213,28 +219,27 @@
           id: this.$route.query.id,
           act: this.$route.query.act || ""
         }).then((res) => {
-          console.log(res)
-          var createDate = new Date(res.data.createdDate).toISOString();
-          var data = {
-            productImages: [],
-            title: res.data.wantBuyInfo,
-            price: res.data.intentionalPrice,
-            views: res.data.hits + 1,
-            describe: res.data.describeInfo,
-            total: res.data.totalNum,
-            createdDate: createDate.substr(0, 10) + " " + createDate.substr(11, 8),
-            category: res.data.wantBuyType,
-            unit: res.data.unit,
-            store: {
-              name: res.data.userName,
-              logo: res.data.userPic
-            },
-            phoneNumber: res.data.member.mobile
-          }
+          var createDate = new Date(res.data.createdDate).toISOString(),
+            data = {
+              productImages: [],
+              title: res.data.wantBuyInfo,
+              price: res.data.intentionalPrice,
+              views: res.data.hits + 1,
+              describe: res.data.describeInfo,
+              total: res.data.totalNum,
+              createdDate: createDate.substr(0, 10) + " " + createDate.substr(11, 8),
+              category: res.data.wantBuyType,
+              unit: res.data.unit,
+              store: {
+                name: res.data.userName,
+                logo: res.data.userPic
+              },
+              phoneNumber: res.data.member.mobile
+            }
           data = recursionData(data, ["price"], {
             a: fmtPrice,
           }, {
-              a: 'View',
+              a: "View",
             });
           this.detail = data;
           this.$AppData.global({ detail: data });

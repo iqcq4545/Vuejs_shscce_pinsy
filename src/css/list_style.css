@@ -1,147 +1,23 @@
-.rank .rankItem .row {
-  margin-top: .20rem;
-  width: 6.80rem;
-  height: 2.06rem;
-  box-shadow: .005rem .005rem .02rem .005rem #f3f3f3;
-  border-radius: .06rem;
-  overflow: hidden;
-}
-
-.rank .rankItem .tit {
-  color: #333230;
-  width: 100%;
-  overflow: hidden;
-  height: .76rem;
-  line-height: .38rem;
-  font-size: .28rem;
-  margin: -.04rem 0 .01rem 0;
-}
-
-.rank .rankItem .type {
-  height: .34rem;
-  margin: .07rem .07rem .07rem 0;
-}
-
-.rank .rankItem.sale .type {
-  width: .63rem;
-}
-
-.rank .rankItem.buy .type {
-  width: 1.05rem;
-}
-
-.rank .rankItem .amount {
-  width: 100%;
-  padding: .001rem 0;
-  height: .38rem;
-  overflow: hidden;
-  margin: .12rem 0 0 0;
-  
-}
-
-.rank .rankItem .price {
-  color: #ff7858;
-}
-
-
-.rank .rankItem .price .cny {
-  padding: .08rem .04rem 0 0;
-  font-size: .24rem;
-
-}
-
-.rank .rankItem .price .int {
-  padding: .08rem 0 0 0;
-  font-size: .36rem;
-}
-
-.rank .rankItem .price .float {
-  padding: .10rem .04rem 0 0;
-
-  font-size: .28rem;
-
-}
-
-.rank .rankItem .price .unit {
-  padding: .10rem 0 0 0;
-  font-size: .24rem;
-}
-
-.rank .rankItem .sales {
-  padding: .10rem 0 0 .36rem;
-  color: #999590;
-  font-size: .24rem;
-}
-
-.rank .rankItem .user {
-  color: #999590;
-}
-
-.rank .rankItem .avatar {
-  width: .22rem;
-  height: .22rem;
-  margin: .001rem .10rem 0 0;
-}
-
-.rank .rankItem .name {
-  margin: .002rem .10rem 0 0;
-}
-
-.rank .rankItem .credit {
-  margin-right: .10rem;
-  width: 1.00rem;
-  height: .24rem;
-}
-
-.rank .sale .rankImg {
-  position: relative;
-  width: 2.06rem;
-  height: 2.06rem;
-  background: #101710;
-}
-
-.rank .sale .rankImg .ico {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: .32rem;
-  height: .32rem;
-}
-
-.rank .sale .rankImg .image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  width: 1.70rem;
-  height: auto;
-  max-height: 1.70rem;
-}
-
-.rank .sale .rankTxt {
-  position: relative;
-  margin: .22rem;
-  width: 4.30rem;
-  height: 1.86rem;
-}
-
-.rank .sale .user {
-  position: absolute;
-  left: 0;
-  bottom: .004rem;
-}
-
-.rank .buy .row {
-  width: 6.36rem;
-  height: 1.62rem;
-  padding: .22rem;
-}
-
-.rank .buy .bid {
-  color: #333230;
-  margin: .10rem .10rem 0 0;
-  background: linear-gradient(to bottom, #fff 0%, #fff 65%, #f9e3c7 66%, #f3ddbe 100%);
-}
+.rank .rankItem .row{overflow:hidden;margin-top:.2rem;width:6.8rem;height:2.06rem;border-radius:.06rem;box-shadow:.005rem .005rem .02rem .005rem #f3f3f3}
+.rank .rankItem .tit{overflow:hidden;margin:-.04rem 0 .01rem 0;width:100%;height:.76rem;color:#333230;font-size:.28rem;line-height:.38rem}
+.rank .rankItem .type{margin:.07rem .07rem .07rem 0;height:.34rem}
+.rank .rankItem.sale .type{width:.63rem}
+.rank .rankItem.buy .type{width:1.05rem}
+.rank .rankItem .amount{overflow:hidden;margin:.12rem 0 0 0;padding:.001rem 0;width:100%;height:.38rem}
+.rank .rankItem .price{color:#ff7858}
+.rank .rankItem .price .cny{padding:.08rem .04rem 0 0;font-size:.24rem}
+.rank .rankItem .price .int{padding:.08rem 0 0 0;font-size:.36rem}
+.rank .rankItem .price .float{padding:.1rem .04rem 0 0;font-size:.28rem}
+.rank .rankItem .price .unit{padding:.1rem 0 0 0;font-size:.24rem}
+.rank .rankItem .sales{padding:.1rem 0 0 .36rem;color:#999590;font-size:.24rem}
+.rank .rankItem .user{color:#999590}
+.rank .rankItem .avatar{margin:.001rem .1rem 0 0;width:.22rem;height:.22rem}
+.rank .rankItem .name{margin:.002rem .1rem 0 0}
+.rank .rankItem .credit{margin-right:.1rem;width:1rem;height:.24rem}
+.rank .sale .rankImg{position:relative;width:2.06rem;height:2.06rem;background:#101710}
+.rank .sale .rankImg .ico{position:absolute;top:0;left:0;z-index:2;width:.32rem;height:.32rem}
+.rank .sale .rankImg .image{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:1.7rem;height:auto;max-height:1.7rem}
+.rank .sale .rankTxt{position:relative;margin:.22rem;width:4.3rem;height:1.86rem}
+.rank .sale .user{position:absolute;bottom:.004rem;left:0}
+.rank .buy .row{padding:.22rem;width:6.36rem;height:1.62rem}
+.rank .buy .bid{margin:.1rem .1rem 0 0;background:linear-gradient(to bottom,#fff 0,#fff 65%,#f9e3c7 66%,#f3ddbe 100%);color:#333230}

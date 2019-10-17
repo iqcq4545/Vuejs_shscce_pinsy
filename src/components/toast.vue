@@ -1,7 +1,6 @@
 <template>
-  <div class="toast" v-show="toastShow">
-    {{toastText}}
-  </div>
+  <div class="toast">
+    {{toastText}} </div>
 </template>
 
 <script>
@@ -9,30 +8,31 @@
     name: 'toast',
     data() {
       return {
-        toastText,
-        icon: "none",
-        duration: duration
+
       }
     },
     mounted() {
 
     },
     methods: {
-      
+
     },
-    props : ['toastText'],
+    props: ['toastText'],
   }
 </script>
 
 <style scoped>
-    .wrap{
-      position: fixed;
-      left: 50%;
-      top:50%;
-      background: rgba(0,0,0,.35);
-      padding: 10px;
-      border-radius: 5px;
-      transform: translate(-50%,-50%);
-      color:#fff;
-    }
-  </style>
+  .toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    float: left;
+    background: rgba(0, 0, 0, .66);
+    padding: .25rem .3rem;
+    font-size: .28rem;
+    line-height: .38rem;
+    border-radius: .1rem;
+    transform: translate(-50%, -50%);
+    color: #fff;
+  }
+</style>

@@ -30,28 +30,17 @@
 <script>
 
   import {
-    parseRegion
   } from '../utils/util';
 
   export default {
     name: 'publish',
     data() {
       return {
-        userInfo: {
-          avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqRISt77TSBaZRwolFIG0Kmg1dmjv7LLibdBDUHCuHHEqjz5ibYXicoUAPBRgKMXnlrJyBlhIWL8ovgw/132",
-          city: "Nantong",
-          country: "China",
-          gender: 1,
-          language: "zh_CN",
-          nickName: "陆笑楠",
-          province: "Jiangsu"
-        },
+        userInfo: {},
         region: {},
       }
     },
     mounted() {
-      this.region = parseRegion(this.userInfo);
-
     }
   }
 </script>

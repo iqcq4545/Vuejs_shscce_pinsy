@@ -9,10 +9,14 @@ import qs from 'qs';
 
 import { AppData } from './utils/AppData';
 
+import { wxValidate } from "./utils/wxValidate.js";
+
+
 import { ReqIndex } from './api/index';
 import { ReqList } from './api/list';
 import { ReqItem } from './api/item';
 import { ReqPublish } from './api/publish';
+
 
 Vue.prototype.$ReqIndex = ReqIndex;
 Vue.prototype.$ReqList = ReqList;
@@ -22,6 +26,8 @@ Vue.prototype.$ReqPublish = ReqPublish;
 Vue.prototype.$qs = qs;
 
 Vue.prototype.$AppData = AppData;
+
+Vue.prototype.$Validate = wxValidate;
 
 Vue.config.productionTip = false;
 Vue.use(VueAwesomeSwiper);
