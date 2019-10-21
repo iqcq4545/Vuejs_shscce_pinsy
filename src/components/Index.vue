@@ -4,13 +4,13 @@
       <div class="seachInput">
         <img class='searchIco' src="../images/search.png" />
         <input class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
-        <img class='speechIco' src='../images/btn_yysr.png'></img>
+        <!-- <img class='speechIco' src='../images/btn_yysr.png'></img> -->
       </div>
     </div>
 
     <div class="container index">
       <div class='banner'>
-        <swiper :options="swiperOption">
+        <swiper :options="swiperOption" ref="swiperIndex">
           <swiper-slide v-for="(item,i) in banner" :key="i">
             <img class="slide-image" :src="item.imagePath" alt="">
           </swiper-slide>
@@ -20,18 +20,24 @@
 
       <div class="button">
         <div class="btnBox">
-          <div class="txtBox">
-            <p class="tit fwb">出售</p>
-            <p class="txt">查看出售商品</p>
-          </div>
-          <img class="btnIco fr" src="../images/icon_index_sale.png"></img>
+          <router-link to="/infoSale">
+            <div class="txtBox">
+              <p class="tit fwb">出售</p>
+              <p class="txt">查看出售商品</p>
+            </div>
+            <img class="btnIco fr" src="../images/icon_index_sale.png"></img>
+          </router-link>
+
         </div>
         <div class='btnBox fr'>
-          <div class="txtBox">
-            <p class="tit fwb">求购</p>
-            <p class="txt">查看求购商品</p>
-          </div>
-          <img class='btnIco fr' src='../images/icon_index_buy.png'></img>
+          <router-link to="/infoBuy">
+            <div class="txtBox">
+              <p class="tit fwb">求购</p>
+              <p class="txt">查看求购商品</p>
+            </div>
+            <img class='btnIco fr' src='../images/icon_index_buy.png'></img>
+          </router-link>
+
         </div>
       </div>
 
@@ -156,13 +162,7 @@
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
           loop: true,
-          coverflow: {
-            rotate: 30,
-            stretch: 10,
-            depth: 60,
-            modifier: 2,
-            slideShadows: true
-          }
+
         },
         pageNumber: {
           "sale": 1,
@@ -183,6 +183,9 @@
         }
       });
     },
+    computed: {
+
+    },
     mounted() {
       this.$ReqIndex.getGoodsindex().then((res) => {
         var data = recursionData(res.data.data, ["billIndex", "coinIndex", "stampIndex", "billChange", "coinChange", "stampChange"], {
@@ -200,6 +203,7 @@
 
       this.$ReqIndex.getBannerList().then((res) => {
         this.banner = res.data.data;
+        this.$refs.swiperIndex.swiper.slideNext();
       });
 
       this.$ReqIndex.getUserInfo().then((res) => {

@@ -16,7 +16,7 @@ class REQ_PUBLISH {
   }
 
   submitSale(data) {
-    var url = `/psy/business/product/${data.productId ? "update" : "save"}`;
+    var url = `/psy/business/product/${data.get("productId") ? "update" : "save"}`;
     return request({
       url: url,
       data: data,
@@ -28,7 +28,7 @@ class REQ_PUBLISH {
   }
 
   submitBuy(data) {
-    var url = `/psy/member/wantbuy/${data.wantBuyInfoId ? "update" : "save"}`;
+    var url = `/psy/member/wantbuy/${data.get("wantBuyInfoId") ? "update" : "save"}`;
     return request({
       url: url,
       data: data,

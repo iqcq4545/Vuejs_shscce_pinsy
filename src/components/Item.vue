@@ -2,7 +2,7 @@
   <div class="page">
 
     <div v-if="type==='sale'" class='banner'>
-      <swiper class='swiper' :options="swiperOption">
+      <swiper class='swiper' :options="swiperOption" ref="swiperItem">
         <swiper-slide v-for="(item,i) in detail.productImages" :key="i">
           <img class="slide-image" :src="item.large" alt="">
         </swiper-slide>
@@ -11,7 +11,6 @@
     </div>
 
     <div class="item">
-
       <div class='wrap'>
         <div class='row'>
           <div v-if="detail.priceView" class='price fwb'>
@@ -80,8 +79,9 @@
     </div>
 
     <div class="botBtns" v-if="act!=='edit'">
-      ​<router-link class="btn submit fl" :to="'/orderConfirm?skuId='+detail.sku.id">
+      ​<router-link class="btn submit fl" v-if="type==='sale'" :to="'/orderConfirm?skuId='+detail.sku.id">
         我要购买</router-link>
+      <a class="btn submit fl" v-if="type==='buy'" :href="'tel:'+detail.phoneNumber">一键通话</a>
     </div>
 
     <div class="botBtns" v-if="act==='edit'">
@@ -146,13 +146,6 @@
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
           loop: true,
-          coverflow: {
-            rotate: 30,
-            stretch: 10,
-            depth: 60,
-            modifier: 2,
-            slideShadows: true
-          }
         },
       }
     },
@@ -211,7 +204,8 @@
                 a: "View",
               });
           this.detail = data;
-          this.$AppData.global({ detail: data });
+          this.$AppData.global({ detail: res.data });
+          this.$refs.swiperItem.swiper.slideNext();
         });
       },
       getDetailBuy() {
@@ -242,7 +236,7 @@
               a: "View",
             });
           this.detail = data;
-          this.$AppData.global({ detail: data });
+          this.$AppData.global({ detail: res.data });
         });
       }
     }

@@ -288,10 +288,19 @@
 
     mounted() {
       this.userInfo = this.$AppData.global().userInfo;
-      if (this.id){
+      if (this.id) {
         this.detail = this.$AppData.global().detail;
-        for(var i in this.detail){
+        for (var i in this.detail) {
           this[this.type][i] = this.detail[i];
+        }
+        if (this.type === "sale") {
+          this.sale.sku = this.detail.defaultSku;
+          this.sale.thumbnail = [];
+          for (var i in this.detail.productImages){
+            this.previewImage[i] = this.detail.productImages[i];
+            this.sale.thumbnail.push(this.detail.productImages[i].thumbnail);
+          }
+          
         }
       }
       console.log(this.detail)
@@ -366,18 +375,17 @@
           var data = new FormData();
           data.append('file', files[i], files[i].name);
           data.append('file_id', i);
-          this.$ReqPublish.uploadImg(data).then((res) => {
-            this.sale.productImages.length && !this.sale.productImages[0].source ? this.sale.productImages.splice(0, 1) : null;
-            this.previewImage.push(res.data);
-            this.sale.productImages.push(res.data);
+          that.$ReqPublish.uploadImg(data).then((res) => {
+            that.previewImage.push(res.data);
+            that.sale.productImages = that.previewImage;
           });
         }
       },
 
       rmImage(i) {
         this.previewImage.splice(i, 1);
-        this.sale.productImages.splice(i, 1);
         this.sale.thumbnail.splice(i, 1);
+        console.log(this.previewImage, this.sale.productImages)
       },
       validate() {
         var rule = {

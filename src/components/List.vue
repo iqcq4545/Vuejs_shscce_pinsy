@@ -4,7 +4,7 @@
       <div class="seachInput">
         <img class="searchIco" src="../images/search.png" />
         <input class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
-        <img class="speechIco" src="../images/btn_yysr.png"></img>
+        <!-- <img class="speechIco" src="../images/btn_yysr.png"></img> -->
       </div>
     </div>
 
