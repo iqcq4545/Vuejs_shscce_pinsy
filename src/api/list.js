@@ -6,7 +6,7 @@ class REQ_LIST {
     return request({
       url: `/psy/shop/wantbuy/listAll`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -18,7 +18,7 @@ class REQ_LIST {
     return request({
       url: `/psy/product/list/json`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -30,7 +30,7 @@ class REQ_LIST {
     return request({
       url: `/psy/product/search/json`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',

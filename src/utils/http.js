@@ -41,12 +41,12 @@ axios.interceptors.response.use(
     }
 )
 // 封装post请求
-export function request({ url, data = {}, header = {}, method = "GET" }) {
+export function request({ url, data = {}, headers = {}, method = "GET" }) {
     return axios({
         url: `${url}`,
         data: data,
         params: data,
-        header: header,
+        headers: headers,
         method: method,
     });
 }

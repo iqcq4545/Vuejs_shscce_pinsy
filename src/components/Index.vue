@@ -3,14 +3,16 @@
     <div class='seachWrap'>
       <div class="seachInput">
         <img class='searchIco' src="../images/search.png" />
-        <input class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
+        <form action="javascript:return true">
+          <input type="text" class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
+        </form>
         <!-- <img class='speechIco' src='../images/btn_yysr.png'></img> -->
       </div>
     </div>
 
     <div class="container index">
       <div class='banner'>
-        <swiper :options="swiperOption" ref="swiperIndex">
+        <swiper :options="swiperOption">
           <swiper-slide v-for="(item,i) in banner" :key="i">
             <img class="slide-image" :src="item.imagePath" alt="">
           </swiper-slide>
@@ -78,7 +80,6 @@
         <div v-show="rankType=='sale'" class="rankItem sale">
           <div v-for="(item,i) in saleList" :key="i" class="row">
             ​<router-link :to="'/item?id='+item.id+'&type=sale'">
-
               <div class='rankImg'>
                 <img class='image' :src="item.thumbnail"></img>
               </div>
@@ -141,7 +142,7 @@
 
   export default {
     name: 'Index',
-    inject: ["toast"],
+    inject: ["reload", "toast"],
     data() {
       return {
         hotKeyword: "猴年邮票",
@@ -162,12 +163,13 @@
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
           loop: true,
-
+          onInit: function (e) {
+            e.slideNext();
+          }
         },
         pageNumber: {
           "sale": 1,
           "buy": 1,
-
         },
         maximum: {
           "sale": undefined,
@@ -177,6 +179,7 @@
     },
     created() {
       var that = this;
+      that.$route.query.code == 11001 ? that.$router.push({ path: "/register" }) : undefined;
       window.addEventListener("scroll", function (e) {
         if ((document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight > (document.body.clientHeight - 1)) {
           that.loadNextPage();
@@ -203,7 +206,6 @@
 
       this.$ReqIndex.getBannerList().then((res) => {
         this.banner = res.data.data;
-        this.$refs.swiperIndex.swiper.slideNext();
       });
 
       this.$ReqIndex.getUserInfo().then((res) => {
@@ -264,7 +266,7 @@
         });
       },
       loadNextPage() {
-        console.log(this.rankType, this.pageNumber[this.rankType], this.maximum[this.rankType])
+       // console.log(this.rankType, this.pageNumber[this.rankType], this.maximum[this.rankType])
         if (this.pageNumber[this.rankType] === this.maximum[this.rankType]) {
           return false;
         }

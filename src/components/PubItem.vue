@@ -57,7 +57,7 @@
           <label class="label">
             <p class="req">*</p>单价
           </label>
-          <input type="number" name="sku.price" placeholder="输入您期望的商品单价" v-model="sale.sku.price" />
+          <input type="number" name="sku.price" placeholder="输入您期望的商品单价" v-model="sale.sku.price" pattern="[0-9]\*" />
         </div>
         <div class="wline"></div>
         <div class="row">
@@ -71,7 +71,7 @@
           <label class="label">
             <p class="req">*</p>库存
           </label>
-          <input type="number" name="sku.stock" placeholder="输入库存数量" v-model="sale.sku.stock" />
+          <input type="number" name="sku.stock" placeholder="输入库存数量" v-model="sale.sku.stock" pattern="[0-9]\*" />
         </div>
         <div class="wline"></div>
         <div class="row radio">
@@ -99,7 +99,7 @@
           <label class="label">
             <p class="req">*</p>发货时间
           </label>
-          <input type="number" name="latestShippedTime" placeholder="输入发货时间" value="1" />
+          <input type="number" name="latestShippedTime" placeholder="输入发货时间" value="1" pattern="[0-9]\*" />
           <p class="tip">天</p>
         </div>
         <div class="wline"></div>
@@ -147,7 +147,7 @@
           <label class='label'>
             <p class='req'>*</p>意向单价
           </label>
-          <input name="intentionalPrice" placeholder="输入您期望的商品单价" v-model="buy.intentionalPrice" />
+          <input name="intentionalPrice" placeholder="输入您期望的商品单价" v-model="buy.intentionalPrice" pattern="[0-9]\*" />
         </div>
         <div class='wline'></div>
         <div class='row'>
@@ -161,7 +161,7 @@
           <label class='label'>
             <p class='req'>*</p>求购数量
           </label>
-          <input type="number" name="totalNum" placeholder="输入求购的数量" v-model="buy.totalNum" />
+          <input type="number" name="totalNum" placeholder="输入求购的数量" v-model="buy.totalNum" pattern="[0-9]\*" />
         </div>
         <div class='wline'></div>
         <div class="row radio">
@@ -296,11 +296,10 @@
         if (this.type === "sale") {
           this.sale.sku = this.detail.defaultSku;
           this.sale.thumbnail = [];
-          for (var i in this.detail.productImages){
+          for (var i in this.detail.productImages) {
             this.previewImage[i] = this.detail.productImages[i];
             this.sale.thumbnail.push(this.detail.productImages[i].thumbnail);
           }
-          
         }
       }
       console.log(this.detail)
@@ -367,18 +366,15 @@
         var that = this,
           files = e.target.files;
         for (var i = 0; i < files.length; i++) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            that.sale.thumbnail.push(this.result);
-          }
-          reader.readAsDataURL(files[i]);
-          var data = new FormData();
-          data.append('file', files[i], files[i].name);
-          data.append('file_id', i);
-          that.$ReqPublish.uploadImg(data).then((res) => {
-            that.previewImage.push(res.data);
-            that.sale.productImages = that.previewImage;
-          });
+          this.$lrz(files[i])
+            .then(function (result) {
+              that.sale.thumbnail.push(result.base64);
+              result.formData.append("file_id", i);
+              that.$ReqPublish.uploadImg(result.formData).then((res) => {
+                that.previewImage.push(res.data);
+                that.sale.productImages = that.previewImage;
+              });
+            }).catch((error) => { }).always(() => { });
         }
       },
 
@@ -387,6 +383,7 @@
         this.sale.thumbnail.splice(i, 1);
         console.log(this.previewImage, this.sale.productImages)
       },
+
       validate() {
         var rule = {
         }, message = {
@@ -475,7 +472,13 @@
           }
         }
         this.$Validate.init(rule, message);
-      }
+      },
+
+      compressImg(e) {
+        if (e.target.files) {
+
+        };
+      },
     }
   }
 </script>

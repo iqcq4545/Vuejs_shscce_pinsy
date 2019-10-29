@@ -8,7 +8,7 @@ class REQ_PUBLISH {
         // appCode: code,
         // isShowLoading: false
       },
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET'
@@ -20,7 +20,7 @@ class REQ_PUBLISH {
     return request({
       url: url,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'POST'
@@ -32,7 +32,7 @@ class REQ_PUBLISH {
     return request({
       url: url,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'POST'
@@ -44,7 +44,7 @@ class REQ_PUBLISH {
     return request({
       url: url,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "multipart/form-data"
       },
       method: 'POST'

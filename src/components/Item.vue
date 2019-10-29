@@ -2,9 +2,9 @@
   <div class="page">
 
     <div v-if="type==='sale'" class='banner'>
-      <swiper class='swiper' :options="swiperOption" ref="swiperItem">
+      <swiper class='swiper' :options="swiperOption">
         <swiper-slide v-for="(item,i) in detail.productImages" :key="i">
-          <img class="slide-image" :src="item.large" alt="">
+          <img class="slide-image" :src="item.large" alt="" @click="previewImage($event)">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
@@ -27,7 +27,7 @@
             <img class="type" :class="type" :src="require('../images/ico_'+type+'_'+detail.category+'.png')"></img>
             {{detail.title}}
           </div>
-          <button class="share fs20 fr" open-type="share">
+          <button class="share fs20 fr" open-type="share" @click="share()">
             <div class="hline"></div>
             <img class='ico' src="../images/btn_share.png"></img>分享
           </button>
@@ -146,6 +146,9 @@
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
           loop: true,
+          onInit: function (e) {
+            e.slideNext();
+          }
         },
       }
     },
@@ -204,8 +207,12 @@
                 a: "View",
               });
           this.detail = data;
+          res.data.priceView = data.priceView;
           this.$AppData.global({ detail: res.data });
-          this.$refs.swiperItem.swiper.slideNext();
+          this.wxjssdkInit();
+          for (var i in this.detail.productImages) {
+            this.preImgList.push(this.detail.productImages[i].source);
+          }
         });
       },
       getDetailBuy() {
@@ -236,7 +243,48 @@
               a: "View",
             });
           this.detail = data;
+          res.data.priceView = data.priceView;
           this.$AppData.global({ detail: res.data });
+
+        });
+      },
+
+      wxjssdkInit() {
+        this.$ReqIndex.signature({
+          url: window.location.href.split("#")[0]
+        }).then((res) => {
+          this.$wx.config({
+            debug: false,
+            appId: res.data.data.appid,
+            timestamp: res.data.data.timestamp,
+            nonceStr: res.data.data.nonceStr,
+            signature: res.data.data.signature,
+            jsApiList: ["previewImage", "updateAppMessageShareData", "updateTimelineShareData"]
+          });
+          this.$wx.ready(() => {
+            this.share();
+          });
+        });
+      },
+      share() {
+        var imgUrl = this.detail.productImages[0].thumbnail,
+          shareData = {
+            title: this.detail.title,
+            desc: this.detail.describe,
+            link: window.location.href.split("#")[0],
+            imgUrl: imgUrl.replace(/http/g, "https"),
+            success: function () {
+            }
+          };
+        this.$wx.updateAppMessageShareData(shareData);
+        this.$wx.updateTimelineShareData(shareData);
+      },
+
+      previewImage(e) {
+        var that = this;
+        that.$wx.previewImage({
+          current: that.preImgList[e.target.parentElement.dataset.swiperSlideIndex],
+          urls: that.preImgList
         });
       }
     }

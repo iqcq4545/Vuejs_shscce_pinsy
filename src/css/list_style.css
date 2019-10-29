@@ -16,7 +16,7 @@
 .rank .rankItem .credit{margin-right:.1rem;width:1rem;height:.24rem}
 .rank .sale .rankImg{position:relative;width:2.06rem;height:2.06rem;background:#101710}
 .rank .sale .rankImg .ico{position:absolute;top:0;left:0;z-index:2;width:.32rem;height:.32rem}
-.rank .sale .rankImg .image{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:1.7rem;height:auto;max-height:1.7rem}
+.rank .sale .rankImg .image{position:absolute;top:0;right:0;bottom:0;left:0;margin:auto;width:1.7rem;height:1.7rem;object-fit:contain}
 .rank .sale .rankTxt{position:relative;margin:.22rem;width:4.3rem;height:1.86rem}
 .rank .sale .user{position:absolute;bottom:.004rem;left:0}
 .rank .buy .row{padding:.22rem;width:6.36rem;height:1.62rem}

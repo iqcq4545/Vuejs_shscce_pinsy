@@ -6,7 +6,7 @@ class REQ_ITEM {
     return request({
       url: url,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -18,7 +18,7 @@ class REQ_ITEM {
     return request({
       url: `/psy/shop/wantbuy/detail`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -30,7 +30,7 @@ class REQ_ITEM {
     return request({
       url: `/psy/product/hits/` + id,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -42,7 +42,7 @@ class REQ_ITEM {
     return request({
       url: `/psy/shop/wantbuy/hits?id=` + id,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -54,7 +54,7 @@ class REQ_ITEM {
     return request({
       url: `/psy/business/product/${data.shelf ? "shelf" : "shelves"}`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'POST',

@@ -3,7 +3,9 @@
     <div class="seachWrap">
       <div class="seachInput">
         <img class="searchIco" src="../images/search.png" />
-        <input class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
+        <form action="javascript:return true">
+          <input type="text" class="p" v-model="searchKeyword" :placeholder="hotKeyword" @keyup.enter="searchEnter" />
+        </form>
         <!-- <img class="speechIco" src="../images/btn_yysr.png"></img> -->
       </div>
     </div>
@@ -183,7 +185,6 @@
             }
           });
         } else {
-
           this.$ReqList.getProductListAll(reqData).then((res) => {
             if (res.data.length) {
               Array.prototype.push.apply(this.saleList, res.data);

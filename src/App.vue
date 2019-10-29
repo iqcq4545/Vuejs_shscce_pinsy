@@ -47,7 +47,7 @@
         for (var i in k) {
           that.toastOption[k[i]] = option[k[i]];
         }
-        option.duration > 0 ? that.toastOption.isShow = true : null;
+        option.duration > 0 ? that.toastOption.isShow = true : undefined;
         that.toastOption.duration = setTimeout(function () { that.toastOption.isShow = false }, option.duration)
       },
     }

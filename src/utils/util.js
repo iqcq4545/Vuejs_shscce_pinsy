@@ -114,7 +114,7 @@ function addToArray(val, ary) {
 
 function rmFromArray(val, ary) {
   for (var i in ary) {
-    val == ary[i] ? ary.splice(i, 1) : null;
+    val == ary[i] ? ary.splice(i, 1) : undefined;
   }
   ary.sort();
   return ary;

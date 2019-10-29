@@ -6,7 +6,7 @@ class REQ_INDEX {
     return request({
       url: `/psy/product/list/json`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -18,7 +18,7 @@ class REQ_INDEX {
     return request({
       url: `/psy/shop/wantbuy/listAll`,
       data: data,
-      header: {
+      headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
       method: 'GET',
@@ -32,7 +32,7 @@ class REQ_INDEX {
       data: {
         bannerId: 4
       },
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       method: 'POST',
@@ -44,7 +44,7 @@ class REQ_INDEX {
     return request({
       url: `/syh-pm-manage/goodsindex/search`,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       method: 'POST',
@@ -56,7 +56,7 @@ class REQ_INDEX {
     return request({
       url: `/psy/order/receiver_list`,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       method: 'GET',
@@ -68,7 +68,7 @@ class REQ_INDEX {
     return request({
       url: `/psy/member/social_user/getInfo`,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       method: 'GET',
@@ -80,11 +80,24 @@ class REQ_INDEX {
     return request({
       url: `/psy/member/WxMa/testToken`,
       data: {},
-      header: {
+      headers: {
         "Content-Type": "application/json"
       },
       method: 'GET',
       //responseType: "arraybuffer",
+      isShowLoading: isShowLoading
+    });
+  }
+
+  signature(data = {}, isShowLoading = true) {
+    return request({
+      url: `/psy/system/getWxJsAPISign`,
+      data: data,
+      params: data,
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      method: 'POST',
       isShowLoading: isShowLoading
     });
   }
