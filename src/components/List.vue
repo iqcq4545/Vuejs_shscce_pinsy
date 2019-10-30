@@ -94,10 +94,8 @@
             </router-link>
           </div>
         </div>
-
       </div>
     </div>
-
   </div>
 
 
@@ -135,14 +133,15 @@
           "3": "bill"
         },
         pageNumber: {
-          "sale": 1,
-          "buy": 1,
+          "sale": 0,
+          "buy": 0,
 
         },
         maximum: {
           "sale": undefined,
           "buy": undefined,
-        }
+        },
+        isLoading: false
       }
     },
 
@@ -151,7 +150,7 @@
       that.listType = that.$route.query.type || "sale";
       that.searchKeyword = that.$route.query.search || "";
       window.addEventListener("scroll", function (e) {
-        if ((document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight > document.body.clientHeight - 25) {
+        if (((e.target.documentElement.scrollTop || e.target.body.scrollTop) + e.target.documentElement.clientHeight) > (e.target.body.clientHeight - 1)) {
           that.loadNextPage();
         }
       });
@@ -179,22 +178,25 @@
             if (res.data.length) {
               Array.prototype.push.apply(this.saleList, res.data);
               this.parseData(this.saleList, ["price"], "View", "saleList");
+              res.data.length < 10 ? this.maximum.sale = this.pageNumber.sale : this.pageNumber.sale += 1;
             }
             else {
               this.maximum.sale = this.pageNumber.sale;
             }
+            this.isLoading = false;
           });
         } else {
           this.$ReqList.getProductListAll(reqData).then((res) => {
             if (res.data.length) {
               Array.prototype.push.apply(this.saleList, res.data);
               this.parseData(this.saleList, ["price"], "View", "saleList");
+              res.data.length < 10 ? this.maximum.sale = this.pageNumber.sale : this.pageNumber.sale += 1;
             }
             else {
               this.maximum.sale = this.pageNumber.sale;
             }
+            this.isLoading = false;
           });
-
         }
       },
 
@@ -209,10 +211,12 @@
           if (res.data.rows.length) {
             Array.prototype.push.apply(this.buyList, res.data.rows);
             this.parseData(this.buyList, ["intentionalPrice"], "View", "buyList");
+            res.data.rows.length < 10 ? this.maximum.buy = this.pageNumber.buy : this.pageNumber.buy += 1;
           }
           else {
             this.maximum.buy = this.pageNumber.buy;
           }
+          this.isLoading = false;
         });
       },
 
@@ -223,7 +227,6 @@
             a: field,
           });
         data = list;
-        console.log()
         this.$set(data, 0, list[0]);
       },
 
@@ -258,11 +261,10 @@
       },
 
       loadNextPage() {
-        console.log(this.listType, this.pageNumber[this.listType], this.maximum[this.listType])
-        if (this.pageNumber[this.listType] === this.maximum[this.listType]) {
+        if ((this.pageNumber[this.listType] === this.maximum[this.listType]) || this.isLoading) {
           return false;
         }
-        this.pageNumber[this.listType] += 1;
+        this.isLoading = true;
         if (this.listType === "sale") {
           this.loadProductListAll();
         }

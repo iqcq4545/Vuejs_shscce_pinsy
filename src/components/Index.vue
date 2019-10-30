@@ -12,7 +12,7 @@
 
     <div class="container index">
       <div class='banner'>
-        <swiper :options="swiperOption">
+        <swiper :options="swiperOption" ref="swiperIndex">
           <swiper-slide v-for="(item,i) in banner" :key="i">
             <img class="slide-image" :src="item.imagePath" alt="">
           </swiper-slide>
@@ -80,6 +80,7 @@
         <div v-show="rankType=='sale'" class="rankItem sale">
           <div v-for="(item,i) in saleList" :key="i" class="row">
             ​<router-link :to="'/item?id='+item.id+'&type=sale'">
+
               <div class='rankImg'>
                 <img class='image' :src="item.thumbnail"></img>
               </div>
@@ -163,9 +164,6 @@
           autoplay: 2500,
           autoplayDisableOnInteraction: false,
           loop: true,
-          onInit: function (e) {
-            e.slideNext();
-          }
         },
         pageNumber: {
           "sale": 1,
@@ -174,14 +172,15 @@
         maximum: {
           "sale": undefined,
           "buy": undefined,
-        }
+        },
+        isLoading: false
       }
     },
     created() {
       var that = this;
       that.$route.query.code == 11001 ? that.$router.push({ path: "/register" }) : undefined;
       window.addEventListener("scroll", function (e) {
-        if ((document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.clientHeight > (document.body.clientHeight - 1)) {
+        if (((e.target.documentElement.scrollTop || e.target.body.scrollTop) + e.target.documentElement.clientHeight) > (e.target.body.clientHeight - 1)) {
           that.loadNextPage();
         }
       });
@@ -206,6 +205,7 @@
 
       this.$ReqIndex.getBannerList().then((res) => {
         this.banner = res.data.data;
+        this.$refs.swiperIndex.swiper.slideNext();
       });
 
       this.$ReqIndex.getUserInfo().then((res) => {
@@ -242,9 +242,11 @@
               });
             Array.prototype.push.apply(this.saleList, list);
             this.$set(this.saleList, this.pageNumber.sale * 10 - 10, list[0]);
+            res.data.length < 10 ? this.maximum.sale = this.pageNumber.sale : this.pageNumber.sale += 1;
           } else {
             this.maximum.sale = this.pageNumber.sale;
           }
+          this.isLoading = false;
         });
       },
       loadBuyListAll() {
@@ -260,17 +262,18 @@
               });
             Array.prototype.push.apply(this.buyList, list);
             this.$set(this.buyList, (this.pageNumber.buy - 1) * 10, list[0]);
+            res.data.rows.length < 10 ? this.maximum.buy = this.pageNumber.buy : this.pageNumber.buy += 1;
           } else {
             this.maximum.buy = this.pageNumber.buy;
           }
+          this.isLoading = false;
         });
       },
       loadNextPage() {
-       // console.log(this.rankType, this.pageNumber[this.rankType], this.maximum[this.rankType])
-        if (this.pageNumber[this.rankType] === this.maximum[this.rankType]) {
+        if ((this.pageNumber[this.rankType] === this.maximum[this.rankType]) || this.isLoading) {
           return false;
         }
-        this.pageNumber[this.rankType] += 1;
+        this.isLoading = true;
         if (this.rankType === "sale") {
           this.loadProductListAll();
         }
